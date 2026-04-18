@@ -1,9 +1,13 @@
 import express from 'express';
+import taskRoutes from './modules/task/task.routes';
+import { errorMiddleware } from './common/middleware/error.middleware';
 
 const app = express();
 
-app.user(express.json());
-app.user('/api/tasks', taskRoutes);
-app.user(errorMiddleware);
+app.use(express.json());
+
+app.use('/tasks', taskRoutes);
+
+app.use(errorMiddleware);
 
 export default app;
