@@ -1,16 +1,10 @@
 import { Router } from "express";
+import { container } from '../../container';
+import { createTask, getTasks } from './task.controller';
 
 const router = Router();
 
-// Define your task routes here
-router.get('/', (req, res) => {
-    res.send('Get all tasks');
-});
-
-router.post('/', (req, res) => {
-    res.send('Create a new task');
-});
-
-
+router.post('/', createTask(container.taskService));
+router.get('/', getTasks(container.taskService));
 
 export default router;
