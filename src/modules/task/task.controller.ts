@@ -3,24 +3,15 @@ import TaskService from './task.service';
 
 export const createTask = (taskService: TaskService) =>
     async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const task = await taskService.create(req.body);
-            res.status(201).json(task);
-        } catch (e) {
-            console.log(e);
-            next(e)
-        }
+        const task = await taskService.create(req.body);
+        res.status(201).json(task);
     };
 
 export const getTasks = (taskService: TaskService) =>
     async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const tasks = await taskService.findAll();
-            res.json(tasks);
-        } catch (e) {
-            console.log(e);
-            next(e);
-        }
+
+        const tasks = await taskService.findAll();
+        res.json(tasks);
     };
 
 

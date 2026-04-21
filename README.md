@@ -2,19 +2,29 @@
 
 ## Docker
 
-**Build and start all services:**
+**Build and start all services (fresh):**
 ```bash
-docker compose up --build
+npm run docker:fresh
 ```
 
-**Start without rebuilding:**
+**Build images:**
 ```bash
-docker compose up
+npm run docker:build
+```
+
+**Start services:**
+```bash
+npm run docker:up
+```
+
+**Run a one-off command in the app container:**
+```bash
+npm run docker:run
 ```
 
 **Stop all services:**
 ```bash
-docker compose down
+npm run docker:down
 ```
 
 ## Migrations
