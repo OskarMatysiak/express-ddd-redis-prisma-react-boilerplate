@@ -7,6 +7,7 @@ export const createTask = (taskService: TaskService) =>
             const task = await taskService.create(req.body);
             res.status(201).json(task);
         } catch (e) {
+            console.log(e);
             next(e)
         }
     };
@@ -17,6 +18,7 @@ export const getTasks = (taskService: TaskService) =>
             const tasks = await taskService.findAll();
             res.json(tasks);
         } catch (e) {
+            console.log(e);
             next(e);
         }
     };
