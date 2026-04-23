@@ -6,7 +6,7 @@
     // Environment Settings
     "module": "commonjs",
     "moduleResolution": "bundler",
-    "ignoreDeprecations": "5.0",
+    "ignoreDeprecations": "6.0",
     "target": "es2022",
     "lib": [
       "es2022"
@@ -37,5 +37,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
   },
-  "exclude": ["node_modules", "dist", "generated", "prisma.config.ts"]                                                                                                                                                           
+  "exclude": ["node_modules", "dist", "generated", "prisma.config.ts", "tests"]                                                                                                                                                           
 }

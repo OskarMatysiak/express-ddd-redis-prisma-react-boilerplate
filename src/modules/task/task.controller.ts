@@ -9,7 +9,6 @@ export const createTask = (taskService: TaskService) =>
 
 export const getTasks = (taskService: TaskService) =>
     async (req: Request, res: Response, next: NextFunction) => {
-
         const tasks = await taskService.findAll();
         res.json(tasks);
     };

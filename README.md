@@ -1,5 +1,17 @@
 # recrutation-javascript
 
+## Local Development
+
+**Start only DB and Redis (recommended for local dev):**
+```bash
+docker compose up db redis
+```
+
+**Run the app locally:**
+```bash
+npm run dev:watch
+```
+
 ## Docker
 
 **Build and start all services (fresh):**
@@ -12,7 +24,7 @@ npm run docker:fresh
 npm run docker:build
 ```
 
-**Start services:**
+**Start all services:**
 ```bash
 npm run docker:up
 ```
@@ -29,22 +41,32 @@ npm run docker:down
 
 ## Migrations
 
-**Apply migrations (dev):**
+**Create and apply a new migration (dev):**
 ```bash
-npx prisma migrate dev
+npm run migrate:dev
 ```
 
-**Apply migrations (production):**
+**Apply pending migrations (CI/production):**
 ```bash
-npx prisma migrate deploy
+npm run migrate:deploy
 ```
 
-**Reset DB and re-run all migrations:**
+**Reset DB and re-apply all migrations:**
 ```bash
-npx prisma migrate reset
+npm run migrate:reset
 ```
 
-**Mark a migration as rolled back (does not undo SQL — manual SQL required):**
+**Check migration status:**
 ```bash
-npx prisma migrate resolve --rolled-back <migration_name>
+npm run migrate:status
+```
+
+**Regenerate Prisma Client after schema changes:**
+```bash
+npm run db:generate
+```
+
+**Open Prisma Studio GUI:**
+```bash
+npm run db:studio
 ```

@@ -9,6 +9,9 @@ services:
       - "3000:3000"
     env_file:
       - .env
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/app
+      - REDIS_URL=redis://redis:6379
     volumes:
       - .:/app
       - /app/node_modules
