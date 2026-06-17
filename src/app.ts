@@ -1,5 +1,5 @@
 import express from 'express';
-import taskRoutes from './modules/task/task.routes';
+import taskRoutes from './modules/task/infrastructure/task.routes';
 import { errorMiddleware } from './common/middleware/error.middleware';
 
 const app = express();

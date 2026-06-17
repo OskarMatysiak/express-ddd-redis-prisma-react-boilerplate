@@ -1,19 +1,15 @@
 import { prisma } from "./config/prisma";
 import redis from './config/redis.config';
 
+import { createPrismaTaskRepository } from './modules/task/infrastructure/task.repository.prisma';
+import { createRedisTaskCache } from './modules/task/infrastructure/task.cache.redis';
+import { createTaskUseCase } from './modules/task/application/task.create';
+import { getAllTasksUseCase } from './modules/task/application/task.get-all';
 
-import { TaskRepository } from './modules/task/task.repository';
-import { PrismaTaskRepository } from './modules/task/task.repository';
-import TaskService from './modules/task/task.service';
-
-const prismaTaskRepository: TaskRepository = new PrismaTaskRepository(prisma);
-const taskService = new TaskService(prismaTaskRepository, redis);
-
+const taskRepository = createPrismaTaskRepository(prisma);
+const taskCache = createRedisTaskCache(redis);
 
 export const container = {
-    taskService,
+    createTask: createTaskUseCase(taskRepository, taskCache),
+    getAllTasks: getAllTasksUseCase(taskRepository, taskCache),
 };
-
-
-
-

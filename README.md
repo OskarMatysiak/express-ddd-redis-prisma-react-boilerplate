@@ -1,5 +1,3 @@
-# recrutation-javascript
-
 ## Local Development
 
 **Start only DB and Redis (recommended for local dev):**
@@ -48,6 +46,9 @@ npm run migrate:dev
 
 **Apply pending migrations (CI/production):**
 ```bash
+
+with production url
+//DATABASE_URL="..." npx prisma migrate deploy
 npm run migrate:deploy
 ```
 
