@@ -10,5 +10,6 @@ export async function getTasks(): Promise<Task[]> {
   if (!res.ok) {
     throw new Error(`Failed to load tasks: ${res.status}`);
   }
+  
   return res.json();
 }
