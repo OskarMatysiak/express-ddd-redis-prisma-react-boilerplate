@@ -1,9 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import taskRoutes from './modules/task/infrastructure/task.routes';
 import { errorMiddleware } from './common/middleware/error.middleware';
 
 const app = express();
 
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
 
 app.use('/tasks', taskRoutes);
