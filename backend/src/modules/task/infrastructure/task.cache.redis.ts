@@ -12,7 +12,12 @@ export function createRedisTaskCache(redis: Redis): TaskCachePort {
     },
 
     async setTasks(tasks) {
-      await redis.set(TASKS_CACHE_KEY, JSON.stringify(tasks), 'EX', TASKS_CACHE_TTL_SECONDS);
+      await redis.set(
+        TASKS_CACHE_KEY,
+        JSON.stringify(tasks),
+        'EX',
+        TASKS_CACHE_TTL_SECONDS
+      );
     },
 
     async invalidate() {

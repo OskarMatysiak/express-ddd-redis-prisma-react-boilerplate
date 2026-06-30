@@ -4,7 +4,7 @@ import { CreateTaskInputSchema } from '../domain/task';
 
 export function createTaskUseCase(
   taskRepository: TaskRepository,
-  taskCache: TaskCachePort,
+  taskCache: TaskCachePort
 ) {
   return async (input: unknown) => {
     const data = CreateTaskInputSchema.parse(input);
@@ -13,6 +13,3 @@ export function createTaskUseCase(
     return task;
   };
 }
-
-
-

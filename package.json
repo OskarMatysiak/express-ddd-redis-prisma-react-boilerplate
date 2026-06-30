@@ -1,4 +1,4 @@
- {
+{
   "name": "task-service",
   "version": "1.0.0",
   "private": true,
@@ -10,6 +10,17 @@
     "build": "npm run build -w backend && npm run build -w frontend",
     "dev:backend": "npm run dev:watch -w backend",
     "dev:frontend": "npm run dev -w frontend",
-    "test": "npm run test -w backend"
+    "test": "npm run test -w backend",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8"
+  },
+  "lint-staged": {
+    "backend/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }

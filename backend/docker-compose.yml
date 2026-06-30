@@ -6,7 +6,7 @@ services:
       context: ..
       dockerfile: backend/docker/Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     env_file:
       - .env
     environment:
@@ -26,9 +26,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: app
     ports:
-      - "5432:5432"
+      - '5432:5432'
 
   redis:
     image: redis:7
     ports:
-      - "6379:6379"
+      - '6379:6379'

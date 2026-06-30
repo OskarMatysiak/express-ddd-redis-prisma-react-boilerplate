@@ -3,7 +3,7 @@ import { TaskCachePort } from '../domain/task.cache';
 
 export function getAllTasksUseCase(
   taskRepository: TaskRepository,
-  taskCache: TaskCachePort,
+  taskCache: TaskCachePort
 ) {
   return async () => {
     const cached = await taskCache.getTasks();

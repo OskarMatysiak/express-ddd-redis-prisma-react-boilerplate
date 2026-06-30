@@ -5,7 +5,7 @@ import { errorMiddleware } from './common/middleware/error.middleware';
 
 const app = express();
 
-if (!process.env.FRONTEND_URL) throw new Error('FRONTEND_URL is not set');                                      
+if (!process.env.FRONTEND_URL) throw new Error('FRONTEND_URL is not set');
 app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
 
