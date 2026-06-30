@@ -1,6 +1,6 @@
 import { getAllTasksUseCase } from '../../src/modules/task/application/task.get-all';
 import { TaskRepository } from '../../src/modules/task/domain/task.repository';
-import { TaskCachePort } from '../../src/modules/task/domain/task.cache';
+import { TaskCachePort } from '../../src/modules/task/application/task.cache';
 
 describe('getAllTasksUseCase', () => {
   let repo: jest.Mocked<TaskRepository>;
@@ -16,7 +16,7 @@ describe('getAllTasksUseCase', () => {
     cache = {
       getTasks: jest.fn(),
       setTasks: jest.fn(),
-      invalidate: jest.fn(),
+      invalidateTasks: jest.fn(),
     };
 
     getAllTasks = getAllTasksUseCase(repo, cache);

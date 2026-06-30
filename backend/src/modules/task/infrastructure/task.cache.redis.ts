@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import { TaskCachePort } from '../domain/task.cache';
+import { TaskCachePort } from '../application/task.cache';
 
 const TASKS_CACHE_KEY = 'tasks';
 const TASKS_CACHE_TTL_SECONDS = 60;
@@ -20,7 +20,7 @@ export function createRedisTaskCache(redis: Redis): TaskCachePort {
       );
     },
 
-    async invalidate() {
+    async invalidateTasks() {
       await redis.del(TASKS_CACHE_KEY);
     },
   };

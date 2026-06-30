@@ -1,5 +1,5 @@
 import { TaskRepository } from '../domain/task.repository';
-import { TaskCachePort } from '../domain/task.cache';
+import { TaskCachePort } from './task.cache';
 
 export function getAllTasksUseCase(
   taskRepository: TaskRepository,

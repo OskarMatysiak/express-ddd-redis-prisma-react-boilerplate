@@ -1,7 +1,7 @@
 import { ZodError } from 'zod';
 import { createTaskUseCase } from '../../src/modules/task/application/task.create';
 import { TaskRepository } from '../../src/modules/task/domain/task.repository';
-import { TaskCachePort } from '../../src/modules/task/domain/task.cache';
+import { TaskCachePort } from '../../src/modules/task/application/task.cache';
 
 describe('createTaskUseCase', () => {
   let repo: jest.Mocked<TaskRepository>;
@@ -17,7 +17,7 @@ describe('createTaskUseCase', () => {
     cache = {
       getTasks: jest.fn(),
       setTasks: jest.fn(),
-      invalidate: jest.fn(),
+      invalidateTasks: jest.fn(),
     };
 
     createTask = createTaskUseCase(repo, cache);
@@ -29,7 +29,7 @@ describe('createTaskUseCase', () => {
     const result = await createTask({ title: 'test' });
 
     expect(repo.create).toHaveBeenCalledWith({ title: 'test' });
-    expect(cache.invalidate).toHaveBeenCalled();
+    expect(cache.invalidateTasks).toHaveBeenCalled();
     expect(result).toEqual({ id: '1', title: 'test' });
   });
 
