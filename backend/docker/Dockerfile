@@ -1,5 +1,3 @@
-# Build context is the repo root (monorepo workspaces).
-
 FROM node:20-alpine
 
 WORKDIR /app
