@@ -1,15 +1,22 @@
-import { prisma } from '../../config/prisma';
-import redis from '../../config/redis.config';
-import { createPrismaTaskRepository } from './infrastructure/task.repository.prisma';
-import { createRedisTaskCache } from './infrastructure/task.cache.redis';
-import { createTaskUseCase } from './application/task.create';
-import { getAllTasksUseCase } from './application/task.get-all';
-import { createTaskRouter } from './api/task.routes';
+import { Module } from '@nestjs/common';
+import { PrismaService } from '../../config/prisma.service';
+import { redisProvider } from '../../config/redis.provider';
+import { CreateTaskUseCase } from './application/create-task.use-case';
+import { GetAllTasksUseCase } from './application/get-all-tasks.use-case';
+import { TASK_CACHE, TASK_REPOSITORY } from './application/task.tokens';
+import { TaskController } from './api/task.controller';
+import { PrismaTaskRepository } from './infrastructure/prisma-task.repository';
+import { RedisTaskCache } from './infrastructure/redis-task.cache';
 
-const repository = createPrismaTaskRepository(prisma);
-const cache = createRedisTaskCache(redis);
-
-export const taskRouter = createTaskRouter({
-  createTask: createTaskUseCase(repository, cache),
-  getAllTasks: getAllTasksUseCase(repository, cache),
-});
+@Module({
+  controllers: [TaskController],
+  providers: [
+    PrismaService,
+    redisProvider,
+    CreateTaskUseCase,
+    GetAllTasksUseCase,
+    { provide: TASK_REPOSITORY, useClass: PrismaTaskRepository },
+    { provide: TASK_CACHE, useClass: RedisTaskCache },
+  ],
+})
+export class TaskModule {}

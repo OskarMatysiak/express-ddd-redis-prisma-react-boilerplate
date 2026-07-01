@@ -4,6 +4,7 @@
   "private": true,
   "workspaces": [
     "backend",
+    "backend-nest",
     "frontend"
   ],
   "scripts": {
@@ -18,7 +19,7 @@
     "lint-staged": "^17.0.8"
   },
   "lint-staged": {
-    "backend/**/*.ts": [
+    "{backend,backend-nest}/**/*.ts": [
       "eslint --fix",
       "prettier --write"
     ]

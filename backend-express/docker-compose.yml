@@ -1,12 +1,12 @@
-name: task-service-nest
+name: task-service
 
 services:
   app:
     build:
       context: ..
-      dockerfile: backend-nest/docker/Dockerfile
+      dockerfile: backend/docker/Dockerfile
     ports:
-      - '3001:3001'
+      - '3000:3000'
     env_file:
       - .env
     environment:

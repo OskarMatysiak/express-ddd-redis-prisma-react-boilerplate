@@ -1,21 +1,22 @@
-import { Request, Response, NextFunction } from 'express';
-import { Task, CreateTaskInput } from '../domain/task';
+import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { CreateTaskUseCase } from '../application/create-task.use-case';
+import { GetAllTasksUseCase } from '../application/get-all-tasks.use-case';
 
-export type TaskUseCases = {
-  createTask: (input: CreateTaskInput) => Promise<Task>;
-  getAllTasks: () => Promise<Task[]>;
-};
+@Controller('tasks')
+export class TaskController {
+  constructor(
+    private readonly createTaskUseCase: CreateTaskUseCase,
+    private readonly getAllTasksUseCase: GetAllTasksUseCase
+  ) {}
 
-export function createTaskController(deps: TaskUseCases) {
-  return {
-    createTask: async (req: Request, res: Response, _next: NextFunction) => {
-      const task = await deps.createTask(req.body);
-      res.status(201).json(task);
-    },
+  @Post()
+  @HttpCode(201)
+  createTask(@Body() body: unknown) {
+    return this.createTaskUseCase.execute(body);
+  }
 
-    getAllTasks: async (_req: Request, res: Response, _next: NextFunction) => {
-      const tasks = await deps.getAllTasks();
-      res.json(tasks);
-    },
-  };
+  @Get()
+  getAllTasks() {
+    return this.getAllTasksUseCase.execute();
+  }
 }
