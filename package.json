@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
+    "backend-express",
     "backend",
-    "backend-nest",
     "frontend"
   ],
   "scripts": {
-    "build": "npm run build -w backend && npm run build -w frontend",
-    "dev:backend": "npm run dev:watch -w backend",
+    "build": "npm run build -w backend-express && npm run build -w frontend",
+    "dev:backend": "npm run dev:watch -w backend-express",
     "dev:frontend": "npm run dev -w frontend",
-    "test": "npm run test -w backend",
+    "test": "npm run test -w backend-express",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "lint-staged": "^17.0.8"
   },
   "lint-staged": {
-    "{backend,backend-nest}/**/*.ts": [
+    "{backend-express,backend}/**/*.ts": [
       "eslint --fix",
       "prettier --write"
     ]
